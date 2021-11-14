@@ -3,6 +3,7 @@ import {Image, ScrollView, StyleSheet, TouchableOpacity, View, Text} from "react
 import {Surface, Paragraph, Title, List, Avatar} from 'react-native-paper';
 import apiFilmes from "../../services/apiFilmes";
 import {Row, Column as Col} from "react-native-responsive-grid";
+import ImgCapa from "../../components/ImgCapa";
 
 const Detalhes = ({navigation, route}) => {
 
@@ -37,14 +38,9 @@ const Detalhes = ({navigation, route}) => {
         <ScrollView margin={10}>
             {filme.id &&
                 <>
-                    {filme.backdrop_path &&
-                        <Row>
-                            <Image
-                                style={styles.imagem}
-                                source={{ uri: 'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path }}
-                            />
-                        </Row>
-                    }
+                    <Row>
+                        <ImgCapa foto={filme.backdrop_path} />
+                    </Row>
 
                     <Row>
                         <Col size={100}>
@@ -55,7 +51,7 @@ const Detalhes = ({navigation, route}) => {
                                 <Paragraph>{filme.overview}</Paragraph>
                                 }
                                 {filme.overview === "" &&
-                                <Paragraph>Sinospse Indisponível</Paragraph>
+                                <Paragraph>Sinopse Indisponível</Paragraph>
                                 }
                             </Surface>
                             {filme.original_title &&
@@ -120,13 +116,6 @@ const Detalhes = ({navigation, route}) => {
 export default Detalhes
 
 const styles = StyleSheet.create({
-    imagem: {
-        height: 350,
-        width: "100%",
-        borderRadius: 5,
-        borderWidth: 4,
-        borderColor: "#20232a",
-    },
     surface: {
         padding: 8,
         margin: 5,

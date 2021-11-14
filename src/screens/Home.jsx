@@ -1,11 +1,17 @@
 import React from "react";
-import {ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import {Dimensions, Image, ScrollView, StyleSheet, TouchableOpacity} from "react-native";
 import { Surface, Text, IconButton, Colors } from 'react-native-paper';
 import { Row, Column as Col } from 'react-native-responsive-grid';
 
 const Home = ({navigation}) => {
+
     return (
         <ScrollView margin={10}>
+            <Row>
+                <Col size={100}>
+                    <Image style={styles.imagem} source={require('../../assets/images/capaApp.png')} />
+                </Col>
+            </Row>
             <Row>
                 <Col size={100}>
                     <TouchableOpacity
@@ -46,7 +52,7 @@ const Home = ({navigation}) => {
                                 color={Colors.red500}
                                 size={50}
                             />
-                            <Text>Lançamentos</Text>
+                            <Text>Último Lançamento</Text>
                         </Surface>
                     </TouchableOpacity>
                 </Col>
@@ -65,4 +71,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         elevation: 4,
     },
+    imagem: {
+        height: 150,
+        width: "100%"
+    }
 });

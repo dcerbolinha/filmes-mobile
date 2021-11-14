@@ -3,6 +3,8 @@ import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react
 import {List, Paragraph, Surface, Title, Divider} from 'react-native-paper';
 import apiFilmes from '../../services/apiFilmes';
 import { Row, Column as Col } from 'react-native-responsive-grid';
+import ImgPoster from "../../components/ImgPoster";
+import ImgCapa from "../../components/ImgCapa";
 
 
 const DetalhesAtores = ({navigation, route}) => {
@@ -31,15 +33,9 @@ const DetalhesAtores = ({navigation, route}) => {
         <ScrollView margin={10}>
             {ator.id &&
             <>
-                {ator.profile_path  &&
                 <Row>
-                    <Image
-                        style={styles.imagem}
-                        source={{ uri: 'https://image.tmdb.org/t/p/w500/' + ator.profile_path }}
-                    />
+                    <ImgCapa foto={ator.profile_path} />
                 </Row>
-                }
-
                 <Row>
                     <Col size={100}>
                         <Surface style={styles.surface}>
@@ -67,10 +63,7 @@ const DetalhesAtores = ({navigation, route}) => {
                         <Col size={50} key={filme.id} >
                             <TouchableOpacity
                                 onPress={() => navigation.push('filmes/detalhes', { id: filme.id })}>
-                                <Image
-                                    style={styles.imagemFilme}
-                                    source={{ uri: 'https://image.tmdb.org/t/p/w500/' + filme.poster_path }}
-                                />
+                                <ImgPoster foto={filme.poster_path}/>
                             </TouchableOpacity>
                         </Col>
                     ))}
@@ -87,17 +80,6 @@ const DetalhesAtores = ({navigation, route}) => {
 export default DetalhesAtores
 
 const styles = StyleSheet.create({
-    imagem: {
-        height: 400,
-        width: "100%",
-        borderRadius: 5,
-        borderWidth: 4,
-        borderColor: "#20232a",
-    },
-    imagemFilme:{
-        height: 300,
-        margin: 5
-    },
     surface: {
         padding: 8,
         margin: 5,

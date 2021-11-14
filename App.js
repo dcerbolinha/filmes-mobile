@@ -53,7 +53,7 @@ export default function App(props) {
               })} />
           <Stack.Screen name="filmes/lancamentos" component={Lancamentos} options={
               ({ navigation }) => ({
-                  title: 'Lançamentos',
+                  title: 'Último Lançamento',
                   headerRight: () => (
                       <Button
                           onPress={() => navigation.navigate('Home')}
