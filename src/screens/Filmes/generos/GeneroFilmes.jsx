@@ -1,27 +1,36 @@
 import React, {useState, useEffect} from "react";
 import {ScrollView, TouchableOpacity } from "react-native";
-import apiFilmes from "../../services/apiFilmes";
+import apiFilmes from "../../../services/apiFilmes";
 import { Row, Column as Col } from 'react-native-responsive-grid';
-import ImgPoster from "../../components/ImgPoster";
-import {Button} from "react-native-paper";
+import ImgPoster from "../../../components/ImgPoster";
+import {Divider, Title, Button} from "react-native-paper";
 
-const Populares = ({navigation}) => {
+const GeneroFilmes = ({navigation, route}) => {
 
     const [filmes, setFilmes] = useState([]);
     const [pagina, setPagina] = useState(1)
 
+    const name = route.params.name;
+
     useEffect(()=>{
-        apiFilmes.get(`/movie/popular?language=pt-BR&page=${pagina}`).then(result => {
+        const id = route.params.id;
+        apiFilmes.get(`/discover/movie?sort_by=popularity.desc&include_adult=false&page=${pagina}&with_genres=${id}&language=pt-BR`).then(result => {
             if(filmes.length > 0){
                 setFilmes([...filmes, ...result.data.results])
             }else{
                 setFilmes(result.data.results)
             }
+
         })
     }, [pagina])
 
+
     return(
         <ScrollView margin={10}>
+            <Row>
+                <Title>{name}</Title>
+                <Divider/>
+            </Row>
             <Row>
                 {filmes.map(filme => (
                     <Col size={50} key={filme.id} >
@@ -43,4 +52,4 @@ const Populares = ({navigation}) => {
     )
 }
 
-export default Populares
+export default GeneroFilmes

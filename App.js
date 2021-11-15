@@ -10,6 +10,7 @@ import Lancamentos from "./src/screens/Filmes/Lancamentos";
 import Pesquisar from "./src/screens/Filmes/Pesquisar";
 import Detalhes from "./src/screens/Filmes/Detalhes";
 import DetalhesAtores from "./src/screens/Atores/DetalhesAtores";
+import GeneroFilmes from "./src/screens/Filmes/generos/GeneroFilmes";
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +63,17 @@ export default function App(props) {
                       />
                   )
               })} />
+            <Stack.Screen name="filmes/genero" component={GeneroFilmes} options={
+                ({ navigation }) => ({
+                    title: 'Gênero',
+                    headerRight: () => (
+                        <Button
+                            onPress={() => navigation.navigate('Home')}
+                            icon="home"
+                            color="#fff"
+                        />
+                    )
+                })} />
           <Stack.Screen name="filmes/detalhes" component={Detalhes} options={
               ({ navigation }) => ({
                   title: 'Detalhes',
@@ -84,6 +96,7 @@ export default function App(props) {
                       />
                   )
               })} />
+
         </Stack.Navigator>
       </NavigationContainer>
   );

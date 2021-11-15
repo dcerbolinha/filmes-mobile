@@ -78,7 +78,7 @@ const Detalhes = ({navigation, route}) => {
                                 {filme.genres.map(genero => (
                                     <View key={genero.id}>
                                         <TouchableOpacity
-                                            onPress={() => navigation.push('filmes/genero', { id: genero.id })}>
+                                            onPress={() => navigation.push('filmes/genero', { id: genero.id, name: genero.name })}>
                                             <List.Item title={genero.name} />
                                         </TouchableOpacity>
                                     </View>
