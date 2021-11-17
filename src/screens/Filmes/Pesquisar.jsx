@@ -28,7 +28,7 @@ const Pesquisar = ({navigation}) => {
 
     useEffect(()=>{
         if(busca){
-            apiFilmes.get(`/search/movie?language=pt-BR&page=${pagina}&query=${busca.replace(/\s/g, '%20')}`).then(result => {
+            apiFilmes.get(encodeURI(`/search/movie?language=pt-BR&page=${pagina}&query=${busca}`)).then(result => {
                 if(filmes.length > 0){
                     setFilmes([...filmes, ...result.data.results])
                 }
